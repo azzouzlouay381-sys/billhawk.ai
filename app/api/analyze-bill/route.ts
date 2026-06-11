@@ -167,6 +167,8 @@ export async function POST(req: NextRequest) {
       provider_name:              String(parsed.provider_name),
       current_plan_name:          String(parsed.current_plan_name),
       current_monthly_cost:       Number(parsed.current_monthly_cost),
+      currency_code:              String(parsed.currency_code ?? "USD"),
+      current_monthly_cost_usd:   Number(parsed.current_monthly_cost_usd ?? parsed.current_monthly_cost),
       due_date_or_contract_end:   String(parsed.due_date_or_contract_end),
       estimated_savings_potential: String(parsed.estimated_savings_potential),
       negotiation_script:         String(parsed.negotiation_script),
