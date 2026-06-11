@@ -1,0 +1,35 @@
+# netlify.toml — BillHawk AI deployment configuration
+# Netlify uses the @netlify/plugin-nextjs adapter to serve Next.js 14 App Router apps.
+
+[build]
+  command   = "npm run build"
+  publish   = ".next"
+
+[build.environment]
+  # Force Node 20 for Next.js 14 compatibility
+  NODE_VERSION = "20"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Redirect all routes to Next.js handler (handled automatically by the plugin,
+# but included explicitly for clarity and fallback)
+[[redirects]]
+  from   = "/api/*"
+  to     = "/.netlify/functions/___netlify-handler"
+  status = 200
+
+[[redirects]]
+  from   = "/*"
+  to     = "/.netlify/functions/___netlify-handler"
+  status = 200
+
+# Security headers — important for a privacy-first product
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options            = "DENY"
+    X-Content-Type-Options     = "nosniff"
+    Referrer-Policy            = "strict-origin-when-cross-origin"
+    Permissions-Policy         = "camera=(), microphone=(), geolocation=()"
+    Content-Security-Policy    = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://api.openai.com;"

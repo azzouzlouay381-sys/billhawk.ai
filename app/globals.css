@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-inter: 'Inter', system-ui, sans-serif;
+  --font-instrument: 'Instrument Serif', Georgia, serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0B1F3A;
+  color: #E8F0F8;
+  font-family: var(--font-inter);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar to match dark theme */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0B1F3A;
+}
+::-webkit-scrollbar-thumb {
+  background: #2E4D6B;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #4A90C4;
+}
+
+/* Subtle animated gradient for hero section */
+.hero-gradient {
+  background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(74, 144, 196, 0.18) 0%, transparent 60%),
+              radial-gradient(ellipse 40% 40% at 80% 60%, rgba(245, 166, 35, 0.08) 0%, transparent 50%),
+              #0B1F3A;
+}
+
+/* Drop zone pulse ring */
+@keyframes ring-pulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50%       { opacity: 0.8; transform: scale(1.015); }
+}
+.dropzone-ring-pulse {
+  animation: ring-pulse 2.5s ease-in-out infinite;
+}
+
+/* Shimmer loading skeleton */
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, #1A3558 25%, #2E4D6B 50%, #1A3558 75%);
+  background-size: 800px 100%;
+  animation: shimmer 1.4s infinite linear;
+  border-radius: 6px;
+}
+
+/* Number highlight — big stat display */
+.stat-number {
+  font-family: var(--font-instrument);
+  font-style: italic;
+}
+
+/* Prose in negotiation script */
+.script-prose {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: #B0C4D8;
+}
