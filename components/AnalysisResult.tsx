@@ -48,11 +48,11 @@ export default function AnalysisResult({ analysis, onReset }: Props) {
 
       {/* ── Top stats row ────────────────────────────────────────────────── */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {/* Current cost — highlighted red */}
+        {/* Current cost — highlighted red with currency conversion */}
         <StatCard
           label="Monthly cost"
-          value={`$${analysis.current_monthly_cost.toFixed(2)}`}
-          sub={analysis.current_plan_name}
+          value={`${analysis.current_monthly_cost.toFixed(2)} ${analysis.currency_code}`}
+          sub={`${analysis.current_plan_name} · ~$${analysis.current_monthly_cost_usd.toFixed(2)} USD`}
           variant="danger"
           icon={
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.8}>
