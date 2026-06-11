@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react"
 import { useDropzone } from "react-dropzone"
+import type { FileRejection } from "react-dropzone"
 import { toast } from "sonner"
 import type { BillAnalysis } from "@/lib/types"
 
@@ -101,7 +102,7 @@ export default function BillDropzone({
 
   // ── react-dropzone setup ──────────────────────────────────────────────────
   const onDrop = useCallback(
-    (accepted: File[], rejected: { errors: { code: string }[] }[]) => {
+    (accepted: File[], rejected: FileRejection[]) => {
       if (rejected.length > 0) {
         const code = rejected[0]?.errors?.[0]?.code
         if (code === "file-too-large") toast.error("File too large. Max 10 MB.")
